@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { ViewModule } from './modules/view/view.module';
+import { BlogModule } from './modules/blog/blog.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ViewModule } from './modules/view/view.module';
       }),
       inject: [ConfigService],
     }),
+    BlogModule,
   ],
   controllers: [],
   providers: [],
