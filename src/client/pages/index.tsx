@@ -1,8 +1,7 @@
-import React from 'react';
-import { NextPage } from 'next';
+// import React from 'react';
 
-const Home: NextPage = () => {
-  return <h1>Hello, Nest-Next-TS!</h1>;
+const Home = () => {
+  return <h1>Hello, Nest-Next-MongoDB!</h1>;
 };
 
 export default Home;
