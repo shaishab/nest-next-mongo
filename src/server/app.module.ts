@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 import { ViewModule } from './modules/view/view.module';
 import { BlogModule } from './modules/blog/blog.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -20,6 +19,7 @@ import { BlogModule } from './modules/blog/blog.module';
       }),
       inject: [ConfigService],
     }),
+    UserModule,
     BlogModule,
   ],
   controllers: [],
