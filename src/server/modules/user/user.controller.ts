@@ -5,7 +5,7 @@ import {
   HttpStatus,
   Param,
   NotFoundException,
-  User,
+  Post,
   Body,
   Query,
   Put,
@@ -35,7 +35,7 @@ export class UserController {
   }
 
   // Submit a user
-  @User('/user')
+  @Post('/user')
   async addUser(@Res() res, @Body() createUserDTO: CreateUserDTO) {
     const newUser = await this.userService.addUser(createUserDTO);
     return res.status(HttpStatus.OK).json({
