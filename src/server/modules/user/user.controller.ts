@@ -22,6 +22,7 @@ export class UserController {
   // Fetch all users
   @Get('users')
   async getUsers(@Res() res) {
+    console.log('Server API called ==============');
     const users = await this.userService.getUsers();
     return res.status(HttpStatus.OK).json(users);
   }

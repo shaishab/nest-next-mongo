@@ -11,7 +11,6 @@ import { UserModule } from './modules/user/user.module';
     ConfigModule.forRoot({
       envFilePath: ['.env.dev', '.env.prod'],
     }),
-    ViewModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
@@ -19,6 +18,7 @@ import { UserModule } from './modules/user/user.module';
       }),
       inject: [ConfigService],
     }),
+    ViewModule,
     UserModule,
     BlogModule,
   ],

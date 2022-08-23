@@ -19,6 +19,6 @@
     "noFallthroughCasesInSwitch": false,
     "jsx": "preserve"  // My addition
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/server/**/*.ts"],
   "exclude": [".next"]
 }
