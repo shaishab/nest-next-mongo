@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RenderModule } from 'nest-next';
 import Next from 'next';
-import { resolve } from 'path';
+// import { resolve } from 'path';
 
 // import { ViewModule } from './modules/view/view.module';
 import { BlogModule } from './modules/blog/blog.module';
@@ -23,7 +23,7 @@ import { UserModule } from './modules/user/user.module';
     }),
     RenderModule.forRootAsync(
       Next({
-        dev: true,
+        dev: process.env.NODE_ENV !== 'production',
         dir: './src/client',
       }),
       {

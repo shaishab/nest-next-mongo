@@ -12,7 +12,8 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  await server.listen(3000);
+  await server.listen(3000,);
+  console.log(`Application is running on: ${await server.getUrl()}`);
 }
 
 bootstrap();

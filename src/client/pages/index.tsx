@@ -5,7 +5,7 @@ import Link from 'next/link'
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 export default function Index() {
-  const { data, error } = useSwr<User[]>('api/users', fetcher)
+  const { data, error } = useSwr<User[]>('/api/users', fetcher)
 
   if (error) { 
     console.log('user api error===', error);

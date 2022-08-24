@@ -13,7 +13,7 @@ export class UserService {
     return users;
   }
 
-  async getUser(userID): Promise<User> {
+  async getUser(userID:String): Promise<User> {
     const user = await this.userModel.findById(userID).exec();
     return user;
   }
@@ -23,7 +23,7 @@ export class UserService {
     return newUser.save();
   }
 
-  async editUser(userID, createUserDTO: CreateUserDTO): Promise<User> {
+  async editUser(userID:String, createUserDTO: CreateUserDTO): Promise<User> {
     const editedUser = await this.userModel.findByIdAndUpdate(
       userID,
       createUserDTO,
@@ -32,7 +32,7 @@ export class UserService {
     return editedUser;
   }
 
-  async deleteUser(userID): Promise<any> {
+  async deleteUser(userID:String): Promise<any> {
     const deletedUser = await this.userModel.findByIdAndRemove(userID);
     return deletedUser;
   }
