@@ -4,7 +4,7 @@ import { NextServer } from 'next/dist/server/next';
 
 @Injectable()
 export class ViewService implements OnModuleInit {
-  private server: NextServer = new NextServer({dev:true});
+  private server: NextServer = new NextServer({ dev: true });
 
   async onModuleInit(): Promise<void> {
     try {

@@ -16,7 +16,6 @@ import { Request, Response } from 'express';
 import { UserService } from './user.service';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
-import { ParseIntPipe } from '../shared/pipes/parse-int.pipe';
 
 @Controller('user')
 export class UserController {
@@ -24,20 +23,22 @@ export class UserController {
 
   // Fetch all users
   @Get('users')
-  async getUsers(@Req() req:Request, @Res() res: Response) {
+  async getUsers(@Req() req: Request, @Res() res: Response) {
     try {
       console.log('Server API called to retrieve user==============');
       const users = await this.userService.getUsers();
       return res.send(users);
-    } catch(e) {
+    } catch (e) {
       console.log('catch error=====', e);
     }
-    
   }
 
   // Fetch a particular user using ID
   @Get('user/:userID')
-  async getUser(@Res() res: Response, @Param('userID', new ValidateObjectId()) userID:String) {
+  async getUser(
+    @Res() res: Response,
+    @Param('userID', new ValidateObjectId()) userID: string,
+  ) {
     const user = await this.userService.getUser(userID);
     if (!user) throw new NotFoundException('User does not exist!');
     return res.status(HttpStatus.OK).json(user);
@@ -45,7 +46,7 @@ export class UserController {
 
   // Submit a user
   @Post('/user')
-  async addUser(@Res() res:Response, @Body() createUserDTO: CreateUserDTO) {
+  async addUser(@Res() res: Response, @Body() createUserDTO: CreateUserDTO) {
     const newUser = await this.userService.addUser(createUserDTO);
     return res.status(HttpStatus.OK).json({
       message: 'User has been submitted successfully!',
@@ -56,8 +57,8 @@ export class UserController {
   // Edit a particular user using ID
   @Put('/edit')
   async editUser(
-    @Res() res:Response,
-    @Query('userID', new ValidateObjectId()) userID:String,
+    @Res() res: Response,
+    @Query('userID', new ValidateObjectId()) userID: string,
     @Body() createUserDTO: CreateUserDTO,
   ) {
     const editedUser = await this.userService.editUser(userID, createUserDTO);
@@ -71,8 +72,8 @@ export class UserController {
   // Delete a user using ID
   @Delete('/delete')
   async deleteUser(
-    @Res() res:Response,
-    @Query('userID', new ValidateObjectId()) userID:String,
+    @Res() res: Response,
+    @Query('userID', new ValidateObjectId()) userID: string,
   ) {
     const deletedUser = await this.userService.deleteUser(userID);
     if (!deletedUser) throw new NotFoundException('User does not exist!');

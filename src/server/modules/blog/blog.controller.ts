@@ -11,6 +11,7 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
+import { Request, Response } from 'express';
 import { BlogService } from './blog.service';
 import { CreatePostDTO } from './dto/create-post.dto';
 import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
@@ -21,14 +22,17 @@ export class BlogController {
 
   // Fetch all posts
   @Get('posts')
-  async getPosts(@Res() res) {
+  async getPosts(@Res() res: Response) {
     const posts = await this.blogService.getPosts();
     return res.status(HttpStatus.OK).json(posts);
   }
 
   // Fetch a particular post using ID
   @Get('post/:postID')
-  async getPost(@Res() res, @Param('postID', new ValidateObjectId()) postID) {
+  async getPost(
+    @Res() res: Response,
+    @Param('postID', new ValidateObjectId()) postID: string,
+  ) {
     const post = await this.blogService.getPost(postID);
     if (!post) throw new NotFoundException('Post does not exist!');
     return res.status(HttpStatus.OK).json(post);
@@ -36,7 +40,7 @@ export class BlogController {
 
   // Submit a post
   @Post('/post')
-  async addPost(@Res() res, @Body() createPostDTO: CreatePostDTO) {
+  async addPost(@Res() res: Response, @Body() createPostDTO: CreatePostDTO) {
     const newPost = await this.blogService.addPost(createPostDTO);
     return res.status(HttpStatus.OK).json({
       message: 'Post has been submitted successfully!',
@@ -47,8 +51,8 @@ export class BlogController {
   // Edit a particular post using ID
   @Put('/edit')
   async editPost(
-    @Res() res,
-    @Query('postID', new ValidateObjectId()) postID,
+    @Res() res: Response,
+    @Query('postID', new ValidateObjectId()) postID: string,
     @Body() createPostDTO: CreatePostDTO,
   ) {
     const editedPost = await this.blogService.editPost(postID, createPostDTO);
@@ -62,8 +66,8 @@ export class BlogController {
   // Delete a post using ID
   @Delete('/delete')
   async deletePost(
-    @Res() res,
-    @Query('postID', new ValidateObjectId()) postID,
+    @Res() res: Response,
+    @Query('postID', new ValidateObjectId()) postID: string,
   ) {
     const deletedPost = await this.blogService.deletePost(postID);
     if (!deletedPost) throw new NotFoundException('Post does not exist!');
