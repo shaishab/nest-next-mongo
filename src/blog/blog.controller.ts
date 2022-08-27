@@ -10,11 +10,11 @@ import {
 import { Request, Response } from 'express';
 import { BlogService } from './blog.service';
 
-@Controller('/blog')
+@Controller('api/blog')
 export class BlogController {
   constructor(private service: BlogService) {}
 
-  @Render('blog')
+  // @Render('blog')
   @Get()
   public async index(@Req() req: Request, @Res() res: Response) {
     const posts = await this.service.all();
