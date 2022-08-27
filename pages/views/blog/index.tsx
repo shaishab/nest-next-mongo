@@ -2,7 +2,6 @@ import * as React from 'react';
 import { NextPage, NextPageContext } from 'next';
 import { IPost } from '../../../src/blog/post.interface';
 import PostPreview from '../../../components/post-preview';
-// import { BlogService } from '../../../src/blog/blog.service';
 
 interface Props {
   posts: IPost[];
@@ -39,9 +38,9 @@ export async function getServerSideProps(ctx: NextPageContext) {
   };
 
   if (!Array.isArray(props.posts)) {
-    // const service = new BlogService();
-    // props.posts = await service.all();
-    const res = await fetch(`http://localhost:3000/blog`, { method: 'GET' });
+    const res = await fetch(`http://localhost:3000/api/blog`, {
+      method: 'GET',
+    });
     console.log('post res===========', res);
     const data = await res.json();
     console.log('post data===========', data);

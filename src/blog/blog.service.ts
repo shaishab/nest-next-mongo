@@ -1,7 +1,4 @@
-import { Injectable, Inject, Post } from '@nestjs/common';
 import { Model } from 'mongoose';
-import * as mongoose from 'mongoose';
-import BlogSchema from './blog.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { IPost } from './post.interface';
 
