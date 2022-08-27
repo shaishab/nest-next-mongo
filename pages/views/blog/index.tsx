@@ -17,8 +17,13 @@ const Blog: NextPage<Props> = ({ posts, source }) => {
           <PostPreview key={post.slug} post={post} />
         ))}
       </div>
+      {posts.length < 1 && (
+        <div style={{ fontStyle: 'italic', fontSize: 14 }}>
+          No post available
+        </div>
+      )}
       <div style={{ fontStyle: 'italic', fontSize: 14 }}>
-        this page was rendered on the {source}
+        this page was rendered on the {source} and post length {posts.length}
       </div>
     </div>
   );
@@ -38,13 +43,13 @@ export async function getServerSideProps(ctx: NextPageContext) {
   };
 
   if (!Array.isArray(props.posts)) {
-    const res = await fetch(`http://localhost:3000/api/blog`, {
+    const baseUrl = process.env.BASE_URL;
+    const resData = await fetch(baseUrl + '/api/blog', {
       method: 'GET',
     });
-    console.log('post res===========', res);
-    const data = await res.json();
-    console.log('post data===========', data);
-    props.posts = data || [];
+
+    const data = await resData.json();
+    props.posts = data;
     props.source = 'client';
   }
 

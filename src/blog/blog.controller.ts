@@ -18,19 +18,22 @@ export class BlogController {
   @Get()
   public async index(@Req() req: Request, @Res() res: Response) {
     const posts = await this.service.all();
-    console.log('post from controller====', posts);
     return res.send(posts);
   }
 
-  @Render('blog/[slug]')
+  // @Render('blog/[slug]')
   @Get(':slug')
-  public get(@Param('slug') slug: string) {
-    const post = this.service.find(slug);
+  public async get(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Param('slug') slug: string,
+  ) {
+    const post = await this.service.find(slug);
 
-    if (post === null) {
+    if (!post) {
       throw new NotFoundException();
     }
 
-    return { post };
+    return res.send(post);
   }
 }

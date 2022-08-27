@@ -17,7 +17,7 @@ const Post: NextPage<Props> = ({ post: { title, content }, source }) => {
     <div>
       <h1>{title}</h1>
       <div>
-          <p>{content}</p>
+        <p>{content}</p>
       </div>
       <div style={{ fontStyle: 'italic', fontSize: 14 }}>
         this page was rendered on the {source}
@@ -42,8 +42,16 @@ export async function getServerSideProps(ctx: NextPageContext) {
   };
 
   if (!props.post) {
-    const service = new BlogService();
-    props.post = await service.find(ctx.query.slug as string);
+    const baseUrl = process.env.BASE_URL;
+    const resData = await fetch(
+      (baseUrl + '/api/blog/' + ctx.query.slug) as string,
+      {
+        method: 'GET',
+      },
+    );
+
+    const data = await resData.json();
+    props.post = data;
     props.source = 'client';
   }
 
