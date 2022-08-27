@@ -1,7 +1,7 @@
 import { Injectable, Inject, Post } from '@nestjs/common';
 import { Model } from 'mongoose';
 import * as mongoose from 'mongoose';
-import BlogSchema from './blog.schema'
+import BlogSchema from './blog.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { IPost } from './post.interface';
 
@@ -28,20 +28,22 @@ export class BlogService {
 
   public async all(): Promise<IPost[]> {
     try {
-      console.log('called api service to retrieve Post============', this.postModel);
+      // console.log(
+      //   'called api service to retrieve Post============',
+      //   this.postModel,
+      // );
       const posts = await this.postModel.find({});
       // .then((data)=> {
       //   console.log('Post data======', data);
       // });
       // const posts = await Blog.find();
-      console.log('called executed============');
-      console.log('Post============', posts);
+      // console.log('called executed============');
+      console.log('Post in service============', posts);
       return posts;
-    } catch(e) {
-      console.log('Post error============', e);
+    } catch (e) {
+      console.log('Post service error============', e);
       return Object.values([]);
     }
-    
   }
 
   // public find(slug: string): IPost | null {

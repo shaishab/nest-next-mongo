@@ -4,7 +4,10 @@ import {
   NotFoundException,
   Param,
   Render,
+  Req,
+  Res,
 } from '@nestjs/common';
+import { Request, Response } from 'express';
 import { BlogService } from './blog.service';
 
 @Controller('/blog')
@@ -13,10 +16,10 @@ export class BlogController {
 
   @Render('blog')
   @Get()
-  public async index() {
+  public async index(@Req() req: Request, @Res() res: Response) {
     const posts = await this.service.all();
-    console.log("post from controller====", posts);
-    return {posts: posts};
+    console.log('post from controller====', posts);
+    return res.send(posts);
   }
 
   @Render('blog/[slug]')
