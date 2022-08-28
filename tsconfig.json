@@ -31,14 +31,14 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true
+    "incremental": true,
   },
   "include": [
     "./pages/**/*",
     "./src/**/*",
     "./ui/**/*",
-    "types.ts"
-  ],
+    "types.ts",
+    "shared/**/*.ts"  ],
   "exclude": [
     "node_modules"
   ]

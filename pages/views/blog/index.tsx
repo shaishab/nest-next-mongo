@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NextPage, NextPageContext } from 'next';
-import { IPost } from '../../../src/blog/post.interface';
-import PostPreview from '../../../components/post-preview';
+import { IPost } from '../../../shared/dto/post.interface';
+import PostPreview from '../../components/post-preview';
 
 interface Props {
   posts: IPost[];

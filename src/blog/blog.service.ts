@@ -1,6 +1,6 @@
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { IPost } from './post.interface';
+import { IPost } from '../../shared/dto/post.interface';
 
 export class BlogService {
   constructor(@InjectModel('Blog') private readonly postModel: Model<IPost>) {}
