@@ -13,7 +13,7 @@ const Sidebar: FC = () => {
               textTransform: 'uppercase',
             }}
           >
-            EXAMPLE APP
+            Nest Next Mongo App
           </a>
         </Link>
       </div>

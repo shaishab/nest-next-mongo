@@ -1,8 +1,23 @@
 {
-  "name": "nestnext8",
+  "name": "nest-next-mongo",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "This is a monorepo skeleton build with Nest.js (Node), Next.js (React) and Mongoose (MongoDB) with server side rendering. Featuring ESLint, TypeScript and much more!",
+  "author": "Shaishab Roy",
   "license": "MIT",
+  "keywords": [
+    "nestjs",
+    "node",
+    "nextjs",
+    "react",
+    "mongo",
+    "mongodb",
+    "mongoose"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shaishab/nest-next-mongo.git"
+  },
+  "main": "index.js",
   "scripts": {
     "start:dev": "nodemon src/main.ts",
     "build:clean": "rimraf .next",
