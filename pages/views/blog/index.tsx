@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { NextPage, NextPageContext } from 'next';
+import { GetServerSideProps, NextPage, NextPageContext } from 'next';
 import { IPost } from '../../../shared/dto/post.interface';
 import PostPreview from '../../components/post-preview';
 
 interface Props {
   posts: IPost[];
-  source: string;
 }
 
-const Blog: NextPage<Props> = ({ posts, source }) => {
+const Blog: NextPage<Props> = ({ posts }) => {
   return (
     <div>
       <h1>blog</h1>
@@ -23,7 +22,7 @@ const Blog: NextPage<Props> = ({ posts, source }) => {
         </div>
       )}
       <div style={{ fontStyle: 'italic', fontSize: 14 }}>
-        this page was rendered on the {source} and post length {posts.length}
+        this page was rendered on the server side
       </div>
     </div>
   );
@@ -36,24 +35,34 @@ const Blog: NextPage<Props> = ({ posts, source }) => {
 // To better understand why this happens, reference the following next
 // documentation about how getServerSideProps only runs on the server:
 // https://nextjs.org/docs/basic-features/data-fetching#only-runs-on-server-side
-export async function getServerSideProps(ctx: NextPageContext) {
-  const props: Props = {
-    source: 'server',
-    posts: ctx.query.posts as any,
-  };
+// export async function getServerSideProps(ctx: NextPageContext) {
+//   const props: Props = {
+//     source: 'server',
+//     posts: ctx.query.posts as any,
+//   };
 
-  if (!Array.isArray(props.posts)) {
-    const baseUrl = process.env.BASE_URL;
-    const resData = await fetch(baseUrl + '/api/blog', {
-      method: 'GET',
-    });
+//   if (!Array.isArray(props.posts)) {
+    // const baseUrl = process.env.BASE_URL;
+    // const resData = await fetch(baseUrl + '/api/blog', {
+    //   method: 'GET',
+    // });
 
-    const data = await resData.json();
-    props.posts = data;
-    props.source = 'client';
-  }
+    // const data = await resData.json();
+//     props.posts = data;
+//     props.source = 'client';
+//   }
 
-  return { props };
-}
+//   return { props };
+// }
+
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const baseUrl = process.env.BASE_URL;
+  const resData = await fetch(`${baseUrl}/api/blog/post`, {
+    method: 'GET',
+  });
+
+  const posts = await resData.json();
+  return { props: { posts } };
+};
 
 export default Blog;

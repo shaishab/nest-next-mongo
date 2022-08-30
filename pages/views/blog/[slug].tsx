@@ -1,17 +1,22 @@
-import { NextPage, NextPageContext } from 'next';
+import { GetServerSideProps, NextPage, NextPageContext,} from 'next';
 import { IPost } from '../../../types';
+
+interface pageContext extends NextPageContext {
+ req: any
+}
+const getServerSidePropsContext = (ctx: pageContext) => {
+  if(ctx.req && ctx.req.params) {
+    ctx.req.query = ctx.req.query;
+    ctx.req.params = ctx.req.params || ctx.query;
+  }
+ return {...ctx};
+};
 
 interface Props {
   post: IPost;
-  source: string;
 }
 
-interface SSProps {
-  post: IPost | null;
-  source: string;
-}
-
-const Post: NextPage<Props> = ({ post: { title, content }, source }) => {
+const Post: NextPage<Props> = ({ post: { title, slug, content } }) => {
   return (
     <div>
       <h1>{title}</h1>
@@ -19,7 +24,7 @@ const Post: NextPage<Props> = ({ post: { title, content }, source }) => {
         <p>{content}</p>
       </div>
       <div style={{ fontStyle: 'italic', fontSize: 14 }}>
-        this page was rendered on the {source}
+        this page was rendered on the server
       </div>
     </div>
   );
@@ -32,37 +37,24 @@ const Post: NextPage<Props> = ({ post: { title, content }, source }) => {
 // To better understand why this happens, reference the following next
 // documentation about how getServerSideProps only runs on the server:
 // https://nextjs.org/docs/basic-features/data-fetching#only-runs-on-server-side
-export async function getServerSideProps(ctx: NextPageContext) {
-  const post = ctx.query.post || null;
 
-  const props: SSProps = {
-    source: 'server',
-    post: post as any,
-  };
+export async function getServerSideProps(ctx: pageContext) {
+  ctx = getServerSidePropsContext(ctx);
+  const baseUrl = process.env.BASE_URL;
+  const slug = ctx.req.params.slug || ctx.query.slug;
 
-  if (!props.post) {
-    const baseUrl = process.env.BASE_URL;
-    const resData = await fetch(
-      (baseUrl + '/api/blog/' + ctx.query.slug) as string,
-      {
-        method: 'GET',
-      },
-    );
+  const resData = await fetch(`${baseUrl}/api/blog/post/${slug}`, {
+    method: 'GET',
+  });
+  const post = await resData.json();
 
-    const data = await resData.json();
-    props.post = data;
-    props.source = 'client';
-  }
-
-  if (props.post === null) {
-    // https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
-    // return object with notFound equal to true for 404 error
+  if (post === null) {
     return {
       notFound: true,
     };
   }
 
-  return { props };
+  return { props: { post } };
 }
 
 export default Post;
