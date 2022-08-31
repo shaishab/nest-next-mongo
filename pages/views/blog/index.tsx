@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GetServerSideProps, NextPage, NextPageContext } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { IPost } from '../../../shared/dto/post.interface';
 import PostPreview from '../../components/post-preview';
 
@@ -35,25 +35,6 @@ const Blog: NextPage<Props> = ({ posts }) => {
 // To better understand why this happens, reference the following next
 // documentation about how getServerSideProps only runs on the server:
 // https://nextjs.org/docs/basic-features/data-fetching#only-runs-on-server-side
-// export async function getServerSideProps(ctx: NextPageContext) {
-//   const props: Props = {
-//     source: 'server',
-//     posts: ctx.query.posts as any,
-//   };
-
-//   if (!Array.isArray(props.posts)) {
-    // const baseUrl = process.env.BASE_URL;
-    // const resData = await fetch(baseUrl + '/api/blog', {
-    //   method: 'GET',
-    // });
-
-    // const data = await resData.json();
-//     props.posts = data;
-//     props.source = 'client';
-//   }
-
-//   return { props };
-// }
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const baseUrl = process.env.BASE_URL;

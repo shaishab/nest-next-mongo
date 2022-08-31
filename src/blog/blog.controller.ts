@@ -14,7 +14,6 @@ import { BlogService } from './blog.service';
 export class BlogController {
   constructor(private service: BlogService) {}
 
-  // @Render('blog')
   @Get('/blog')
   @Render('blog')
   public async index() {
@@ -22,20 +21,19 @@ export class BlogController {
   }
 
   @Get('api/blog/post')
-  public async listBlogPosts(@Req() req: Request, @Res() res: Response) {
+  public async listBlogPosts(@Res() res: Response) {
     const posts = await this.service.all();
     return res.send(posts);
   }
 
-  @Render('blog/[slug]')
   @Get('/blog/:slug')
+  @Render('blog/[slug]')
   public async blogPost(@Param('slug') slug: string) {
-    return {query:{slug: slug}};
+    return {params:{slug: slug}};
   }
 
   @Get('api/blog/post/:slug')
   public async getBlogPostBySlug(
-    @Req() req: Request,
     @Res() res: Response,
     @Param('slug') slug: string,
   ) {

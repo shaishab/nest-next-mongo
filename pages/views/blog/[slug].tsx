@@ -5,9 +5,8 @@ interface pageContext extends NextPageContext {
  req: any
 }
 const getServerSidePropsContext = (ctx: pageContext) => {
-  if(ctx.req && ctx.req.params) {
-    ctx.req.query = ctx.req.query;
-    ctx.req.params = ctx.req.params || ctx.query;
+  if(ctx.req && ctx.req.params && Object.keys(ctx.req.params).length <1) {
+    ctx.req.params = ctx.req.query;
   }
  return {...ctx};
 };
@@ -41,7 +40,7 @@ const Post: NextPage<Props> = ({ post: { title, slug, content } }) => {
 export async function getServerSideProps(ctx: pageContext) {
   ctx = getServerSidePropsContext(ctx);
   const baseUrl = process.env.BASE_URL;
-  const slug = ctx.req.params.slug || ctx.query.slug;
+  const slug = ctx.req.params.slug;
 
   const resData = await fetch(`${baseUrl}/api/blog/post/${slug}`, {
     method: 'GET',
