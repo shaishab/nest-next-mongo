@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
+    "module": "CommonJS",
     "jsx": "preserve",
     "strict": true,
     "pretty": true,
@@ -17,6 +17,11 @@
     "emitDecoratorMetadata": true,
     "sourceMap": true,
     "skipLibCheck": true,
+    "declaration": true,
+    "removeComments": true,
+    "strictNullChecks": false,
+    "strictBindCallApply": false,
+    "noFallthroughCasesInSwitch": false,
     "lib": [
       "es2017",
       "dom"
@@ -31,14 +36,14 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true,
+    "incremental": true
   },
   "include": [
     "./pages/**/*",
     "./src/**/*",
-    "./ui/**/*",
-    "types.ts",
-    "shared/**/*.ts"  ],
+    "./shared/**/*",
+    "types.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

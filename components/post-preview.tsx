@@ -1,18 +1,10 @@
 import { FC } from 'react';
-import { IPost } from '../types';
+import { IPost } from '../shared/dto/post.interface';
 import Link from 'next/link';
 
 interface Props {
   post: IPost;
 }
-
-const excerpt = (content: string[]): string => {
-  if (Array.isArray(content) && content.length > 0) {
-    const e = content[0];
-    return `${e.substr(0, 125)}...`;
-  }
-  return 'No preview available...';
-};
 
 const PostPreview: FC<Props> = ({ post }) => {
   return (

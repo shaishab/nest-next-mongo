@@ -1,21 +1,21 @@
-import { GetServerSideProps, NextPage, NextPageContext,} from 'next';
+import { NextPage, NextPageContext } from 'next';
 import { IPost } from '../../../types';
 
 interface pageContext extends NextPageContext {
- req: any
+  req: any;
 }
 const getServerSidePropsContext = (ctx: pageContext) => {
-  if(ctx.req && ctx.req.params && Object.keys(ctx.req.params).length <1) {
+  if (ctx.req && ctx.req.params && Object.keys(ctx.req.params).length < 1) {
     ctx.req.params = ctx.req.query;
   }
- return {...ctx};
+  return { ...ctx };
 };
 
 interface Props {
   post: IPost;
 }
 
-const Post: NextPage<Props> = ({ post: { title, slug, content } }) => {
+const Post: NextPage<Props> = ({ post: { title, content } }) => {
   return (
     <div>
       <h1>{title}</h1>

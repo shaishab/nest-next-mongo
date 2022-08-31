@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import type { AppProps /*, AppContext */ } from 'next/app';
-import Sidebar from './components/sidebar';
+import Sidebar from '../components/sidebar';
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
