@@ -3,6 +3,7 @@ import type { AppProps /*, AppContext */ } from 'next/app';
 import Head from 'next/head';
 import Favicon from '../components/favicon';
 import Sidebar from '../components/sidebar';
+import '../styles/index.css'
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (

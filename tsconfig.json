@@ -42,7 +42,8 @@
     "./pages/**/*",
     "./src/**/*",
     "./shared/**/*",
-    "types.ts"
+    "types.ts",
+    "**/*.ts", "**/*.tsx"
   ],
   "exclude": [
     "node_modules"
