@@ -39,7 +39,7 @@ const Post: NextPage<Props> = ({ post: { title, content } }) => {
 
 export async function getServerSideProps(ctx: pageContext) {
   ctx = getServerSidePropsContext(ctx);
-  const baseUrl = process.env.BASE_URL;
+  const baseUrl = `${process.env.CLIENT_HOST}:${process.env.PORT}`;
   const slug = ctx.req.params.slug;
 
   const resData = await fetch(`${baseUrl}/api/blog/post/${slug}`, {
