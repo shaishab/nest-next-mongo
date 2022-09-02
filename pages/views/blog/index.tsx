@@ -37,9 +37,7 @@ const Blog: NextPage<Props> = ({ posts }) => {
 // https://nextjs.org/docs/basic-features/data-fetching#only-runs-on-server-side
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  // http://localhost:3000/api/blog/post
   const baseUrl = `${process.env.CLIENT_HOST}:${process.env.PORT}`;
-  // const baseUrl = process.env.BASE_URL;
   const resData = await fetch(`${baseUrl}/api/blog/post`, {
     method: 'GET',
   });
