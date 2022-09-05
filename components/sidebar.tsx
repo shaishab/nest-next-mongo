@@ -5,17 +5,22 @@ const Sidebar: FC = () => {
   return (
     <div>
       <div style={{ marginBottom: 15 }}>
+      <div className="rounded-full">
+        
         <Link href="/views/home" as="/">
           <a
             style={{
-              fontSize: 22,
+              fontSize: 18,
               textDecoration: 'none',
               textTransform: 'uppercase',
             }}
           >
-            Nest Next Mongo App
+            <img className="object-fill h-16 w-16" style={{marginLeft:'15%' }} src='./static/android-chrome-192x192.png' />
+            Nest Next Mongo
           </a>
         </Link>
+      </div>
+        
       </div>
       <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
         <li>

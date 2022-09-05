@@ -9,7 +9,7 @@ interface Props {
 const PostPreview: FC<Props> = ({ post }) => {
   return (
     <div style={{ marginBottom: 25 }}>
-      <h2 style={{ fontSize: 16, textTransform: 'uppercase' }}>{post.title}</h2>
+      <h2 className='text-lg font-semibold'>{post.title}</h2>
       <p>{post.content}</p>
       <Link
         href={{

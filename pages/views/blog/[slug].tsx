@@ -18,7 +18,7 @@ interface Props {
 const Post: NextPage<Props> = ({ post: { title, content } }) => {
   return (
     <div>
-      <h1>{title}</h1>
+      <h1 className="text-2xl font-bold">{title}</h1>
       <div>
         <p>{content}</p>
       </div>
