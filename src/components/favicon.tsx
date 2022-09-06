@@ -3,7 +3,7 @@ import React from "react";
 const Favicon = (): JSX.Element => {
     return (
         <>
-            <link rel="shortcut icon" href="/static/favicon.ico" />
+            <link rel="shortcut icon" href="/favicon.ico" />
             <link rel="aandroid-chrome-192x192-icon" sizes="192x1192" href="/static/android-chrome-192x192.png"/>
             <link rel="android-chrome-512x512-icon" sizes="512x512" href="/static/android-chrome-512x512.png"/>
             <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png.png"/>

@@ -15,7 +15,7 @@ import { BlogModule } from './api/blog/blog.module';
     RenderModule.forRootAsync(
       Next({
         dev: process.env.NODE_ENV !== 'production',
-        conf: { useFilesystemPublicRoutes: true, distDir: '.next', },
+        conf: { useFilesystemPublicRoutes: false, distDir: '.next', },
       }),
     ),
     MongooseModule.forRootAsync({
