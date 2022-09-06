@@ -16,7 +16,7 @@ const Sidebar: FC = () => {
             }}
           >
             <img className="object-fill h-16 w-16" style={{marginLeft:'15%' }} src='./static/android-chrome-192x192.png' />
-            Nest Next Mongo
+            Nest-Next-Mongo
           </a>
         </Link>
       </div>

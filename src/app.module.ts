@@ -4,7 +4,7 @@ import { RenderModule } from 'nest-next';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import Next from 'next';
 import { AppController } from './app.controller';
-import { BlogModule } from './blog/blog.module';
+import { BlogModule } from './api/blog/blog.module';
 
 @Module({
   imports: [
@@ -15,7 +15,7 @@ import { BlogModule } from './blog/blog.module';
     RenderModule.forRootAsync(
       Next({
         dev: process.env.NODE_ENV !== 'production',
-        conf: { useFilesystemPublicRoutes: false },
+        conf: { useFilesystemPublicRoutes: true, distDir: '.next', },
       }),
     ),
     MongooseModule.forRootAsync({

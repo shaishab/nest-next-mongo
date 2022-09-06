@@ -36,14 +36,14 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true
+    "incremental": true,
   },
   "include": [
-    "./pages/**/*",
-    "./src/**/*",
-    "./shared/**/*",
+    "src/pages/**/*",
+    "src/**/*",
+    "src/shared/**/*",
     "types.ts",
-    "**/*.ts", "**/*.tsx"
+    "src/**/*.ts", "src/**/*.tsx",
   ],
   "exclude": [
     "node_modules"
