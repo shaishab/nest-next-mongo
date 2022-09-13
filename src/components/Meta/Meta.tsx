@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 
 import { AppConfig } from '../../utils/App.config';
+import Favicon from './Favicon'
 
 type IMetaProps = {
   title: string;
@@ -16,7 +17,7 @@ const Meta = (props: IMetaProps) => {
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <meta charSet="UTF-8" key="charset" />
         <meta
           name="viewport"
@@ -47,6 +48,9 @@ const Meta = (props: IMetaProps) => {
           href={`${router.basePath}/static/favicon.ico`}
           key="favicon"
         />
+      </Head> */}
+      <Head>
+        <Favicon />
       </Head>
       <NextSeo
         title={props.title}
@@ -64,4 +68,4 @@ const Meta = (props: IMetaProps) => {
   );
 };
 
-export { Meta };
+export default Meta;

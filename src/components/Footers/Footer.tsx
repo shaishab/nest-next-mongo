@@ -32,7 +32,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="text-right text-xs py-2">
-                <a href="">&copy;2021 Iatek</a>
+                <a href="">&copy;2022 nest-next-mongo</a>
             </div>
         </div>
     </footer>
