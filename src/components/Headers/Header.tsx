@@ -4,6 +4,8 @@ import type { ReactNode } from 'react';
 import { AppConfig } from '../../utils/App.config';
 import Meta from '../Meta/Meta';
 import Navbar from '../Navbars/Navbar';
+import Navbar1 from '../Navbars/Navbar1';
+import Navbar2 from '../Navbars/Navbar2';
 
 type INavbarProps = {
   meta?: {
@@ -18,7 +20,7 @@ type INavbarProps = {
 const Header = (props: INavbarProps) => (
   <>
     <Meta {...props.meta}/>
-    <Navbar {...props}/>
+    <Navbar2 {...props}/>
   </>
     
 );
