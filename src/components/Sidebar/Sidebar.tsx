@@ -8,15 +8,15 @@ const Sidebar: FC = () => {
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:py-12 lg:px-8 lg:flex lg:items-center lg:justify-between">
         <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             <Link href="/views/home" as="/">
-              <a className="truncate">
-                <img className="w-16 h-16 rounded-full" style={{marginLeft:'35%' }} src="/static/android-chrome-192x192.png" alt="image description"></img>
+              <a className="text-center text-sm md:text-base">
+                <img className="w-16 h-16 rounded-full" src="/static/android-chrome-192x192.png" alt="image description"></img>
                 <span className="block text-indigo-600 overflow-ellipsis">Nest-Next-Mongo</span>
               </a>
             </Link>
         </h2>
       </div>
     </div>
-    <div className="sticky top-0 p-4 bg-gray-100 rounded-xl w-full">
+    <div className="invisible sticky top-0 p-4 bg-gray-100 rounded-xl w-full md:visible">
       <ul className="flex sm:flex-col overflow-hidden content-center justify-between">
           <li className="py-2 hover:bg-indigo-300 rounded">
             <Link href="/views/home" as="/">

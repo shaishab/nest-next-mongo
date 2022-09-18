@@ -1,21 +1,23 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
+import { AppConfig } from '../../utils/App.config';
+
 const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  name: 'Shaishab Roy',
+  email: 'shaishab.cse@gmail.com',
+  imageUrl: 'https://avatars.githubusercontent.com/u/3139652?s=96&v=4',
 }
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '/team', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
+  { name: 'Home', href: '/views/home', as:'/', current: true },
+  { name: 'About', href: '/views/about', as:'/about', current: false },
+  { name: 'Blog', href: '/views/blog', as:'/blog', current: false },
+  // { name: 'Calendar', href: '#', as:'/', current: false },
+  // { name: 'Reports', href: '#', as:'/', current: false },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -40,24 +42,27 @@ const Navbar3 = (props: INavbarProps) =>  (
         ```
       */}
       <div className="min-h-full">
-        <Disclosure as="nav" className="bg-gray-800">
+        <Disclosure as="nav" className="bg-teal-500">
           {({ open }): JSX.Element => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
-                    <div className="flex-shrink-0">
-                      <img
-                        className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                        alt="Your Company" />
+                    <div className="flex items-center flex-shrink-0 text-white mr-6">
+                    <Link href="/views/home" as="/">
+                        <a  className='inline-flex space-x-1'>
+                          <img className="h-8 w-8" src="/static/android-chrome-192x192.png" alt="Your Company" />
+                          <span className="font-semibold text-xl tracking-tight">{AppConfig.site_name}</span>
+                        </a>
+                    </Link>
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
+                          <Link href={item.href} as={item.as}>
                           <a
                             key={item.name}
-                            href={item.href}
+                            // href={item.href}
                             className={classNames(
                               item.current
                                 ? 'bg-gray-900 text-white'
@@ -68,6 +73,7 @@ const Navbar3 = (props: INavbarProps) =>  (
                           >
                             {item.name}
                           </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
