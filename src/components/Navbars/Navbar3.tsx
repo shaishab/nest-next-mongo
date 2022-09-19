@@ -13,11 +13,11 @@ const user = {
   imageUrl: 'https://avatars.githubusercontent.com/u/3139652?s=96&v=4',
 }
 const navigation = [
-  { name: 'Home', href: '/views/home', as:'/', current: true },
-  { name: 'About', href: '/views/about', as:'/about', current: false },
-  { name: 'Blog', href: '/views/blog', as:'/blog', current: false },
-  // { name: 'Calendar', href: '#', as:'/', current: false },
-  // { name: 'Reports', href: '#', as:'/', current: false },
+  { name: 'Home', href: '/views/home', as:'/', isActive: true },
+  { name: 'About', href: '/views/about', as:'/about', isActive: false },
+  { name: 'Blog', href: '/views/blog', as:'/blog', isActive: false },
+  // { name: 'Calendar', href: '#', as:'/', isActive: false },
+  // { name: 'Reports', href: '#', as:'/', isActive: false },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -60,19 +60,18 @@ const Navbar3 = (props: INavbarProps) =>  (
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
                           <Link href={item.href} as={item.as}>
-                          <a
-                            key={item.name}
-                            // href={item.href}
-                            className={classNames(
-                              item.current
-                                ? 'bg-gray-900 text-white'
-                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                              'px-3 py-2 rounded-md text-sm font-medium'
-                            )}
-                            aria-current={item.current ? 'page' : undefined}
-                          >
-                            {item.name}
-                          </a>
+                            <a
+                              key={item.name}
+                              className={classNames(
+                                item.isActive
+                                  ? 'bg-gray-900 text-white'
+                                  : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'px-3 py-2 rounded-md text-sm font-medium'
+                              )}
+                              aria-current={item.isActive ? 'page' : undefined}
+                            >
+                              {item.name}
+                            </a>
                           </Link>
                         ))}
                       </div>
@@ -146,12 +145,12 @@ const Navbar3 = (props: INavbarProps) =>  (
                     <Disclosure.Button
                       key={item.name}
                       as="a"
-                      href={item.href}
+                      href={item.as}
                       className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        item.isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'block px-3 py-2 rounded-md text-base font-medium'
                       )}
-                      aria-current={item.current ? 'page' : undefined}
+                      aria-isActive={item.isActive ? 'page' : undefined}
                     >
                       {item.name}
                     </Disclosure.Button>
