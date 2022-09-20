@@ -10,7 +10,7 @@ interface Props {
 const Blog: NextPage<Props> = ({ posts }) => {
   return (
     <div>
-      <h1 className="text-2xl font-bold">blog</h1>
+      <h1 className="text-2xl font-bold">Blog</h1>
       <div>
         {posts.map((post) => (
           <PostPreview key={post.slug} post={post} />
