@@ -1,5 +1,5 @@
 import { NextPage, NextPageContext } from 'next';
-import { IPost } from '../../../../types';
+import { IPost } from '../../../types';
 
 interface pageContext extends NextPageContext {
   req: any;

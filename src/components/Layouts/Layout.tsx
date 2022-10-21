@@ -5,6 +5,7 @@ import Footer from '../Footers/Footer'
 import Sidebar from '../Sidebar/Sidebar';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  // console.log("layout childrenn===", children);x
   return (
       <>
         <Header />
