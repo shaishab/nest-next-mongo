@@ -13,7 +13,7 @@ const PostPreview: FC<Props> = ({ post }) => {
       <p>{post.content}</p>
       <Link
         href={{
-          pathname: '/views/blog/[slug]',
+          pathname: '/blog/[slug]',
           query: { slug: post.slug },
         }}
         as={`/blog/${post.slug}`}

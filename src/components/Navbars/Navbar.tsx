@@ -14,9 +14,9 @@ const user = {
   imageUrl: 'https://avatars.githubusercontent.com/u/3139652?s=96&v=4',
 }
 const navigation = [
-  { name: 'Home', href: '/views/home', as:'/' },
-  { name: 'About', href: '/views/about', as:'/about' },
-  { name: 'Blog', href: '/views/blog', as:'/blog' },
+  { name: 'Home', href: '/home', },
+  { name: 'About', href: '/about', },
+  { name: 'Blog', href: '/blog', },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -43,7 +43,7 @@ const Navbar = (props: INavbarProps) =>  (
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex items-center flex-shrink-0 text-white mr-6">
-                    <Link href="/views/home" as="/">
+                    <Link href="/home" as="/">
                         <a  className='inline-flex space-x-1'>
                           <img className="h-8 w-8" src="/static/android-chrome-192x192.png" alt="Your Company" />
                           <span className="font-semibold text-xl tracking-tight">{AppConfig.site_name}</span>
@@ -53,10 +53,10 @@ const Navbar = (props: INavbarProps) =>  (
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <Link href={item.href} as={item.as} key={item.name}>
+                          <Link href={item.href} key={item.name}>
                             <a
                               className={classNames(
-                                router.asPath === item.as
+                                router.asPath === item.href
                                   ? 'bg-gray-900 text-white'
                                   : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                 'px-3 py-2 rounded-md text-sm font-medium'
@@ -138,12 +138,12 @@ const Navbar = (props: INavbarProps) =>  (
                     <Disclosure.Button
                       key={item.name}
                       as="a"
-                      href={item.as}
+                      href={item.href}
                       className={classNames(
                         router.asPath === item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'block px-3 py-2 rounded-md text-base font-medium'
                       )}
-                      aria-isActive={router.asPath === item.href ? 'page' : undefined}
+                      aria-current={router.asPath === item.href ? 'page' : undefined}
                     >
                       {item.name}
                     </Disclosure.Button>

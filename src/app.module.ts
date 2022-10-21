@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import Next from 'next';
 import { AppController } from './app.controller';
 import { BlogModule } from './api/blog/blog.module';
+import { HomeModule } from './api/home/Home.module';
 
 @Module({
   imports: [
@@ -15,8 +16,9 @@ import { BlogModule } from './api/blog/blog.module';
     RenderModule.forRootAsync(
       Next({
         dev: process.env.NODE_ENV !== 'production',
-        conf: { useFilesystemPublicRoutes: false, distDir: '.next', },
+        conf: { useFilesystemPublicRoutes: true, distDir: '.next', },
       }),
+    //  {viewsDir: '/pages'}
     ),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -25,9 +27,10 @@ import { BlogModule } from './api/blog/blog.module';
       }),
       inject: [ConfigService],
     }),
+    HomeModule,
     BlogModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { GetServerSideProps, NextPage } from 'next';
-import { IPost } from '../../../shared/dto/post.interface';
-import PostPreview from '../../../components/post-preview';
+import { IPost } from '../../shared/dto/post.interface';
+import PostPreview from '../../components/post-preview';
 
 interface Props {
   posts: IPost[];
