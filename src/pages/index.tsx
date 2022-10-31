@@ -16,14 +16,12 @@ const Home: NextPage<Props> = ({ data }) => {
 };
 
 export async function getServerSideProps(ctx: NextPageContext) {
-  console.log('Called home in UI===========');
   const baseUrl = `${process.env.CLIENT_HOST}:${process.env.PORT}`;
   const resData = await fetch(`${baseUrl}/api/home`, {
     method: 'GET',
   });
 
   const data = await resData.json();
-  console.log('Home data=====', data);
   return { props: { data } };
 }
 
