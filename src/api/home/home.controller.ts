@@ -8,16 +8,20 @@ import {
 export class HomeController {
   constructor() {}
 
+  @Get('/')
+  @Render('index')
+  public async root() {
+    return {};
+  }
+
   @Get('/home')
-  @Render('index.tsx')
+  @Render('index')
   public async home() {
-    console.log('Home API default======');
     return {name: 'Shaishab'};
   }
 
   @Get('api/home')
   public async homeInfo() {
-    console.log('Home API======');
     return {name: 'Shaishab Roy'};
   }
 }

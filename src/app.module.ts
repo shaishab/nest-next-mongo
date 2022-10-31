@@ -3,9 +3,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { RenderModule } from 'nest-next';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import Next from 'next';
-import { AppController } from './app.controller';
+// import { AppController } from './app.controller';
+import { HomeModule } from './api/home/home.module';
+import { AboutModule } from './api/about/about.module';
 import { BlogModule } from './api/blog/blog.module';
-import { HomeModule } from './api/home/Home.module';
+
 
 @Module({
   imports: [
@@ -18,7 +20,7 @@ import { HomeModule } from './api/home/Home.module';
         dev: process.env.NODE_ENV !== 'production',
         conf: { useFilesystemPublicRoutes: true, distDir: '.next', },
       }),
-    //  {viewsDir: '/pages'}
+     {viewsDir: null}
     ),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -28,6 +30,7 @@ import { HomeModule } from './api/home/Home.module';
       inject: [ConfigService],
     }),
     HomeModule,
+    AboutModule,
     BlogModule,
   ],
   controllers: [],
