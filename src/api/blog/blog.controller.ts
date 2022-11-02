@@ -13,7 +13,7 @@ export class BlogController {
 
   @Get('/blog')
   @Render('blog')
-  public async index() {
+  public async renderBloglistPage() {
     return {};
   }
 
@@ -25,12 +25,12 @@ export class BlogController {
 
   @Get('/blog/:slug')
   @Render('blog/[slug]')
-  public async blogPost(@Param('slug') slug: string) {
+  public async renderPostPreviewPage(@Param('slug') slug: string) {
     return { params: { slug: slug } };
   }
 
   @Get('api/blog/post/:slug')
-  public async getBlogPostBySlug(@Param('slug') slug: string) {
+  public async getPostBySlug(@Param('slug') slug: string) {
     const post = await this.service.find(slug);
 
     if (!post) {
@@ -39,4 +39,11 @@ export class BlogController {
 
     return post;
   }
+
+  @Get('/blog/add/new')
+  @Render('blog/add')
+  public async renderPostCreatePage() {
+    return {};
+  }
+  
 }

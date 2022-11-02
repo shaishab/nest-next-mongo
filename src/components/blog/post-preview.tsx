@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IPost } from '../shared/dto/post.interface';
+import { IPost } from '../../shared/dto/post.interface';
 import Link from 'next/link';
 
 interface Props {
