@@ -20,7 +20,7 @@ import { BlogModule } from './api/blog/blog.module';
         dev: process.env.NODE_ENV !== 'production',
         conf: { useFilesystemPublicRoutes: true, distDir: '.next', },
       }),
-     {viewsDir: null}
+     {passthrough404: true, viewsDir: null}
     ),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

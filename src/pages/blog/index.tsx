@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import { IPost } from '../../shared/dto/post.interface';
-import PostPreview from '../../components/post-preview';
+import PostPreview from '../../components/blog/post-preview';
+import Link from 'next/link';
 
 interface Props {
   posts: IPost[];
@@ -10,7 +11,19 @@ interface Props {
 const Blog: NextPage<Props> = ({ posts }) => {
   return (
     <div>
-      <h1 className="text-2xl font-bold">Blog</h1>
+      <div className="flex justify-between">
+        <div><h1 className="text-2xl font-bold">Blog</h1></div>
+        <div>
+          {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add+</button> */}
+          <Link
+            href={{
+              pathname: '/blog/add/new',
+            }}
+          >
+            <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add+</a>
+          </Link>
+        </div>
+      </div>
       <div>
         {posts.map((post) => (
           <PostPreview key={post.slug} post={post} />
