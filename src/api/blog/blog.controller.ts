@@ -1,10 +1,14 @@
 import {
   Controller,
   Get,
+  Post,
   NotFoundException,
   Param,
   Render,
+  Req,
+  Res,
 } from '@nestjs/common';
+import { Request, Response } from 'express';
 import { BlogService } from './blog.service';
 
 @Controller()
@@ -44,6 +48,17 @@ export class BlogController {
   @Render('blog/add')
   public async renderPostCreatePage() {
     return {};
+  }
+
+  @Post('api/blog/add/new')
+  public async postCreatePage(@Req() req: Request, @Res() res: Response) {
+    const post = await this.service.add(req.body);
+
+    if (!post) {
+      return res.status(500).send({message: "Bad request :("});
+    }
+
+    return res.status(200).send({message: "Success"});
   }
   
 }

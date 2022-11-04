@@ -23,4 +23,14 @@ export class BlogService {
       return null;
     }
   }
+
+  public async add(data:IPost): Promise<IPost> {
+    try {
+      data.slug = data.title
+      const post = await this.postModel.create(data);
+      return post;
+    } catch (e) {
+      return null;
+    }
+  }
 }
