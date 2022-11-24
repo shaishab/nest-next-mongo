@@ -7,7 +7,7 @@ const Sidebar: FC = () => {
     <div className="bg-gray-50 rounded-xl border my-3 w-full">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:py-12 lg:px-8 lg:flex lg:items-center lg:justify-between">
         <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-            <Link href="/home" as="/">
+            <Link href="/" as="/">
               <a className="text-center text-sm md:text-base">
                 <img className="w-16 h-16 rounded-full" src="/static/android-chrome-192x192.png" alt="image description"></img>
                 <span className="block text-indigo-600 overflow-ellipsis">Nest-Next-Mongo</span>
@@ -19,7 +19,7 @@ const Sidebar: FC = () => {
     <div className="invisible sticky top-0 p-4 bg-gray-100 rounded-xl w-full md:visible">
       <ul className="flex sm:flex-col overflow-hidden content-center justify-between">
           <li className="py-2 hover:bg-indigo-300 rounded">
-            <Link href="/home" as="/">
+            <Link href="/" as="/">
               <a className="truncate">
                   <svg className="w-7 sm:mx-2 mx-4 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
                   <span className="hidden sm:inline">Home</span>

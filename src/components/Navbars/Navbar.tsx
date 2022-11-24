@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import type { ReactNode } from 'react';
 import Link from 'next/link';
@@ -14,7 +14,7 @@ const user = {
   imageUrl: 'https://avatars.githubusercontent.com/u/3139652?s=96&v=4',
 }
 const navigation = [
-  { name: 'Home', href: '/home', },
+  { name: 'Home', href: '/', },
   { name: 'About', href: '/about', },
   { name: 'Blog', href: '/blog', },
 ]
@@ -36,14 +36,30 @@ const Navbar = (props: INavbarProps) =>  (
         <Disclosure as="nav" className="bg-teal-500">
           {({ open }): JSX.Element => {
             const router = useRouter();
-            // console.log('router.asPath====', router.asPath);
+
+            const [activePath, setPath] = useState('/');
+            useEffect(() => setPath('/'), []);
+
+            // console.log('router.asPath====', router.asPath, typeof router.asPath);
+            if(router.asPath.lastIndexOf('/') > 1) {
+              const reqPath = router.asPath.substring(0,router.asPath.indexOf("/", router.asPath.indexOf("/") + 1));
+              if(reqPath != activePath) {
+                setPath(reqPath);
+              }
+            } else {
+              if(router.asPath != activePath) {
+                setPath(router.asPath);
+              }
+            }
+            // console.log('activePath=====', activePath);
+
             return (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex items-center flex-shrink-0 text-white mr-6">
-                    <Link href="/home" as="/">
+                    <Link href="/" as="/">
                         <a  className='inline-flex space-x-1'>
                           <img className="h-8 w-8" src="/static/android-chrome-192x192.png" alt="Your Company" />
                           <span className="font-semibold text-xl tracking-tight">{AppConfig.site_name}</span>
@@ -56,12 +72,14 @@ const Navbar = (props: INavbarProps) =>  (
                           <Link href={item.href} key={item.name}>
                             <a
                               className={classNames(
-                                router.asPath === item.href
+                                activePath === item.href
+                                // activeMenu === item.name
                                   ? 'bg-gray-900 text-white'
                                   : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                 'px-3 py-2 rounded-md text-sm font-medium'
                               )}
                               aria-current={router.asPath === item.href ? 'page' : undefined}
+                              // onClick={() => setMenu(item.name)}
                             >
                               {item.name}
                             </a>

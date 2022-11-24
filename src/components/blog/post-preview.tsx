@@ -10,24 +10,15 @@ const PostPreview: FC<Props> = ({ post }) => {
   return (
     <div style={{ marginBottom: 25 }}>
       <h2 className='text-lg font-semibold'>{post.title}</h2>
-      <p>{post.content}</p>
+      <p className='mb-2.5'>{post.content}</p>
       <Link
         href={{
           pathname: '/blog/[slug]',
           query: { slug: post.slug },
         }}
-        as={`/blog/${post.slug}`}
+        as={`/blog/${encodeURIComponent(post.slug)}`}
       >
-        <a
-          style={{
-            display: 'inline-flex',
-            background: 'black',
-            color: 'white',
-            padding: '5px 10px',
-            textTransform: 'uppercase',
-            textDecoration: 'none',
-            fontSize: 12,
-          }}
+        <a className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'
         >
           View
         </a>
