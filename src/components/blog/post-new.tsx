@@ -18,7 +18,7 @@ const handleSubmit = async (event: any) => {
   const JSONdata = JSON.stringify(data)
 
   // API endpoint where we send form data.
-  const endpoint = '/api/blog/add/new'
+  const endpoint = '/api/blog/post'
 
   // Form the request for sending data to the server.
   const options = {

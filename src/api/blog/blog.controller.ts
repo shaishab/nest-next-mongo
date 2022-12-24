@@ -44,13 +44,13 @@ export class BlogController {
     return post;
   }
 
-  @Get('/blog/add/new')
+  @Get('/blog/post/new')
   @Render('blog/add')
   public async renderPostCreatePage() {
     return {};
   }
 
-  @Post('api/blog/add/new')
+  @Post('api/blog/post')
   public async postCreatePage(@Req() req: Request, @Res() res: Response) {
     const post = await this.service.add(req.body);
 
