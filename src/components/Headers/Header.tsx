@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import dynamic from 'next/dynamic';
 
 import Meta from '../Meta/Meta';
-import Navbar from '../Navbars/Navbar';
+// import Navbar from '../Navbars/Navbar';
+const Navbar = dynamic(import('../Navbars/Navbar'), {
+  ssr: false
+});
 
 type INavbarProps = {
   meta?: {

@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState, useEffect, useId } from 'react'
 import { useRouter } from 'next/router'
 import type { ReactNode } from 'react';
 import Link from 'next/link';
@@ -7,6 +7,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import { AppConfig } from '../../utils/App.config';
+import { identity } from 'rxjs';
 
 const user = {
   name: 'Shaishab Roy',
@@ -14,14 +15,14 @@ const user = {
   imageUrl: 'https://avatars.githubusercontent.com/u/3139652?s=96&v=4',
 }
 const navigation = [
-  { name: 'Home', href: '/', },
-  { name: 'About', href: '/about', },
-  { name: 'Blog', href: '/blog', },
+  { id:1, name: 'Home', href: '/', },
+  { id:2, name: 'About', href: '/about', },
+  { id:3, name: 'Blog', href: '/blog', },
 ]
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { id:1, name: 'Your Profile', href: '#' },
+  { id:2, name: 'Settings', href: '#' },
+  { id:3, name: 'Sign out', href: '#' },
 ]
 type INavbarProps = {
   children?: ReactNode;
@@ -33,7 +34,7 @@ function classNames(...classes: string[]) {
 const Navbar = (props: INavbarProps) =>  (
     <>
       <div className="min-h-full">
-        <Disclosure as="nav" className="bg-teal-500">
+        <Disclosure as="nav" className="bg-teal-500" id='menuw'>
           {({ open }): JSX.Element => {
             const router = useRouter();
 
@@ -59,7 +60,7 @@ const Navbar = (props: INavbarProps) =>  (
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex items-center flex-shrink-0 text-white mr-6">
-                    <Link href="/" as="/">
+                    <Link href="/" as="/" id='home'>
                         <a  className='inline-flex space-x-1'>
                           <img className="h-8 w-8" src="/static/android-chrome-192x192.png" alt="Your Company" />
                           <span className="font-semibold text-xl tracking-tight">{AppConfig.site_name}</span>
@@ -69,7 +70,7 @@ const Navbar = (props: INavbarProps) =>  (
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <Link href={item.href} key={item.name}>
+                          <Link href={item.href} key={item.name} id={`menu-id-${item.id}`}>
                             <a
                               className={classNames(
                                 activePath === item.href
@@ -91,6 +92,7 @@ const Navbar = (props: INavbarProps) =>  (
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
                       <button
+                        id='b1'
                         type="button"
                         className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
@@ -99,9 +101,9 @@ const Navbar = (props: INavbarProps) =>  (
                       </button>
 
                       {/* Profile dropdown */}
-                      <Menu as="div" className="relative ml-3">
+                      <Menu as="div" className="relative ml-3" id='menu1'>
                         <div>
-                          <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button id='menu1b1' className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="sr-only">Open user menu</span>
                             <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
                           </Menu.Button>
@@ -117,7 +119,7 @@ const Navbar = (props: INavbarProps) =>  (
                         >
                           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             {userNavigation.map((item) => (
-                              <Menu.Item key={item.name}>
+                              <Menu.Item key={item.id}>
                                 {({ active }) => (
                                   <a
                                     href={item.href}
@@ -138,7 +140,7 @@ const Navbar = (props: INavbarProps) =>  (
                   </div>
                   <div className="-mr-2 flex md:hidden">
                     {/* Mobile menu button */}
-                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Disclosure.Button id='b3' className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open main menu</span>
                       {open ? (
                         <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -154,6 +156,7 @@ const Navbar = (props: INavbarProps) =>  (
                 <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
                   {navigation.map((item) => (
                     <Disclosure.Button
+                      id={`menu-id-${item.id}`}
                       key={item.name}
                       as="a"
                       href={item.href}
@@ -161,7 +164,8 @@ const Navbar = (props: INavbarProps) =>  (
                         router.asPath === item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'block px-3 py-2 rounded-md text-base font-medium'
                       )}
-                      aria-current={router.asPath === item.href ? 'page' : undefined}
+                      aria-current={router.asPath === item.href ? 'page' : undefined
+                    }
                     >
                       {item.name}
                     </Disclosure.Button>
@@ -177,6 +181,7 @@ const Navbar = (props: INavbarProps) =>  (
                       <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
                     </div>
                     <button
+                      id='b4'
                       type="button"
                       className="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
@@ -187,6 +192,7 @@ const Navbar = (props: INavbarProps) =>  (
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
                       <Disclosure.Button
+                        id={`umenu-id-${item.id}`}
                         key={item.name}
                         as="a"
                         href={item.href}

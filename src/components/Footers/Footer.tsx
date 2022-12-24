@@ -4,7 +4,6 @@ export default function Footer() {
     <>
       <footer className="bg-teal-500 mt-auto">
         <div className="px-4 py-3 text-white mx-auto">
-            <h1 className="text-2xl hidden sm:block mb-2">Footer</h1>
             <div className="flex">
                 <div className="flex-grow flex flex-col">
                     <a href="#" className="text-xs uppercase tracking-wider">Product</a>
@@ -20,9 +19,9 @@ export default function Footer() {
                 </div>
                 <div className="flex-grow flex flex-col">
                     <a href="#" className="text-xs uppercase tracking-wider">Facebook</a>
-                    <a href="#" className="text-xs uppercase tracking-wider">Instagram</a>
-                    <a href="http://in1.com" className="text-xs uppercase tracking-wider">In1.com</a>
+                    <a href="#" className="text-xs uppercase tracking-wider">Github</a>
                     <a href="#" className="text-xs uppercase tracking-wider">Twitter</a>
+                    <a href="#" className="text-xs uppercase tracking-wider">Stack Overflow</a>
                 </div>
                 <div className="flex-grow flex flex-col">
                     <a href="#" className="text-xs uppercase tracking-wider">FAQ's</a>

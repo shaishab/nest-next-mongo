@@ -16,7 +16,7 @@ const Sidebar: FC = () => {
         </h2>
       </div>
     </div>
-    <div className="invisible sticky top-0 p-4 bg-gray-100 rounded-xl w-full md:visible">
+    <div className="sticky top-0 p-4 bg-gray-100 rounded-xl w-full">
       <ul className="flex sm:flex-col overflow-hidden content-center justify-between">
           <li className="py-2 hover:bg-indigo-300 rounded">
             <Link href="/" as="/">
