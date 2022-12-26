@@ -45,7 +45,7 @@ export class BlogController {
   }
 
   @Get('/blog/post/new')
-  @Render('blog/add')
+  @Render('blog/new')
   public async renderPostCreatePage() {
     return {};
   }
