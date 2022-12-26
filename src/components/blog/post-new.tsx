@@ -34,7 +34,7 @@ const handleSubmit = async (event: any) => {
 
   // Get the response data from server as JSON.
   const result = await response.json()
-  alert(`Response from server: ${result.message}`)
+  // alert(`Response from server: ${result.message}`)
 }
 
 const PostNew = () => {
