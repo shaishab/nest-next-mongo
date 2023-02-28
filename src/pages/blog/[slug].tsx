@@ -45,15 +45,16 @@ export async function getServerSideProps(ctx: pageContext) {
   const resData = await fetch(`${baseUrl}/api/blog/post/${slug}`, {
     method: 'GET',
   });
-  const post = await resData.json();
+  const data = await resData.json();
+  console.log('res data======', data);
 
-  if (post === null) {
+  if (data === null) {
     return {
       notFound: true,
     };
   }
 
-  return { props: { post } };
+  return { props: {data} };
 }
 
 export default Post;

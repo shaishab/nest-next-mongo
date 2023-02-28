@@ -14,7 +14,8 @@ type IMetaProps = {
 
 const Meta = (props: IMetaProps) => {
   const router = useRouter();
-
+  console.log('From meta component props=====',props);
+  const meta:any = props;
   return (
     <>
       {/* <Head>

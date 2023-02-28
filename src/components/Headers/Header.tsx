@@ -18,12 +18,16 @@ type INavbarProps = {
   children?: ReactNode;
 };
 
-const Header = (props: INavbarProps) => (
-  <>
-    <Meta {...props.meta}/>
-    <Navbar {...props}/>
-  </>
-    
-);
+const Header = (props: INavbarProps) => {
+   console.log('From Header component props=====', props);
+   console.log('From Header component props.meta=====', props.meta);
+  return (
+    <>
+      <Meta {...props.meta}/>
+      <Navbar {...props}/>
+    </>
+      
+  );
+};
 
 export default Header;
