@@ -19,8 +19,8 @@ type INavbarProps = {
 };
 
 const Header = (props: INavbarProps) => {
-   console.log('From Header component props=====', props);
-   console.log('From Header component props.meta=====', props.meta);
+  //  console.log('From Header component props=====', props);
+  //  console.log('From Header component props.meta=====', props.meta);
   return (
     <>
       <Meta {...props.meta}/>

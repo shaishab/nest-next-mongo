@@ -41,7 +41,7 @@ export class BlogController {
       throw new NotFoundException();
     }
 
-    return {post,meta: {title: post.title}};
+    return {post,meta: {title: post.title, slug: post.slug, description: post.metaContent}};
   }
 
   @Get('/blog/post/new')

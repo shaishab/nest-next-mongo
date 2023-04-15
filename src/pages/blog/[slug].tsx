@@ -46,7 +46,7 @@ export async function getServerSideProps(ctx: pageContext) {
     method: 'GET',
   });
   const data = await resData.json();
-  console.log('res data======', data);
+  // console.log('res data======', data);
 
   if (data === null) {
     return {
@@ -54,7 +54,7 @@ export async function getServerSideProps(ctx: pageContext) {
     };
   }
 
-  return { props: {data} };
+  return { props: data };
 }
 
 export default Post;
