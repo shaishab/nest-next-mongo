@@ -9,10 +9,12 @@ const handleSubmit = async (event: any) => {
   // Stop the form from submitting and refreshing the page.
   event.preventDefault()
 
+  console.log('Called handle submit');
   // Get data from the form.
   const data = {
     title: event.target.title.value,
     content: event.target.content.value,
+    metaContent: event.target.metaContent.value,
   }
 
   const JSONdata = JSON.stringify(data)
@@ -33,13 +35,12 @@ const handleSubmit = async (event: any) => {
   const response = await fetch(endpoint, options)
 
   // Get the response data from server as JSON.
-  const result = await response.json()
-  // alert(`Response from server: ${result.message}`)
+  const result = await response.json();
+  // console.log('post result====', result);
+  alert(`Post success`);
 }
 
 const PostNew = () => {
-
-  
   return (
     <div className="block p-6 rounded-lg shadow-lg bg-white">
       <form onSubmit={handleSubmit}>
@@ -84,6 +85,29 @@ const PostNew = () => {
           id="content"
           rows={10}
           placeholder="Content" ></textarea>
+        </div>
+        <div className="form-group mb-6">
+          <textarea className="
+            form-control
+            block
+            w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-300
+            rounded
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+          "
+          required
+          id="metaContent"
+          rows={5}
+          placeholder="Short Description" ></textarea>
         </div>
         <div className="form-group form-check text-center mb-6">
           <input type="checkbox"

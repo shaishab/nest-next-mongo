@@ -31,7 +31,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Navbar = (props: INavbarProps) =>  (
+const Navbar = (props: any) =>  (
     <>
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-teal-500" id='menuw'>

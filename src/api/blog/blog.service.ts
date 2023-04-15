@@ -1,5 +1,6 @@
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import urlSlug from 'url-slug'
 import { IPost } from '../../shared/dto/post.interface';
 
 export class BlogService {
@@ -26,7 +27,7 @@ export class BlogService {
 
   public async add(data:IPost): Promise<IPost> {
     try {
-      data.slug = data.title
+      data.slug = urlSlug(data.title);
       const post = await this.postModel.create(data);
       return post;
     } catch (e) {

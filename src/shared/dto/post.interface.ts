@@ -5,4 +5,5 @@ export interface IPost extends Document {
   title: string;
   slug: string;
   content: string;
+  metaContent: string;
 }
